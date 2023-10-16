@@ -60,3 +60,6 @@ def customer_record(request, pk):
         # Look up records
         customer_record = Record.objects.get(id=pk)
         return render(request, 'record.html', locals())
+    else:
+        messages.success(request, "You Must Be Logged In To View That Page...")
+        return redirect('home')
