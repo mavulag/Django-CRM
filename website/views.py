@@ -53,3 +53,10 @@ def register_user(request):
         return render(request, 'register.html', locals())
     
     return render(request, 'register.html', locals())
+
+def customer_record(request, pk):
+    # Check first if user is loged in to view the records
+    if request.user.is_authenticated:
+        # Look up records
+        customer_record = Record.objects.get(id=pk)
+        return render(request, 'record.html', locals())
