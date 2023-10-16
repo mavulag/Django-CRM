@@ -6,6 +6,9 @@ from .models import Record
 
 # Create your views here.
 def home(request):
+    # Grab everything in Record table and save in records variable
+    records = Record.objects.all()
+
     # Check to see if logging in
     # if the user is posting
     if request.method == 'POST':
@@ -21,7 +24,7 @@ def home(request):
             messages.success(request, "There Was An Error Logging In, Please Try Again...")
     # Else if user not posting
     else:
-        return render(request, 'home.html', {})
+        return render(request, 'home.html', locals())
 
 # naming login_user so as to reduce the conflict with the imported library
 # def login_user(request):
