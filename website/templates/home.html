@@ -25,6 +25,7 @@
         {% if records %}
         {% for record in records %}
         <tr>
+            
 
             <td>{{record.first_name}} {{record.last_name}}</td>
             <td>{{record.email}}</td>
@@ -34,7 +35,8 @@
             <td>{{record.state}}</td>
             <td>{{record.zipcode}}</td>
             <td>{{record.created_at}}</td>
-            <td>{{record.id}}</td>
+            <td><a href="{% url "record" record.id %}" >{{record.id}}</a></td>
+            
             
         </tr>
         {% endfor %}
@@ -45,8 +47,9 @@
 
 
 {% else %}
+<div class="col-md-6 offset-md-3">
     <h1>Login</h1>
-<br/>
+    <br/>
 
     <form method="post" action="{% url 'home' %}">
     {% csrf_token %}
@@ -58,7 +61,7 @@
         </div>
         <button type="submit" class="btn btn-secondary">Login</button>
     </form>
-{% comment %} </div> {% endcomment %}
+</div>
 {% endif %}
 
 {% endblock %}
